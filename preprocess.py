@@ -45,7 +45,7 @@ input_file = valohai.inputs("input_file").path()
 df_model_data = pd.read_csv(input_file)
 
 encoder = cat_pipeline.fit(df_model_data)
-joblib.dump(encoder, "categorical_encoder.joblib")
+joblib.dump(encoder, "/valohai/outputs/categorical_encoder.joblib")
 
 # Shuffle and splitting dataset
 train_data, validation_data, test_data = np.split(
@@ -57,7 +57,7 @@ print("train_data:\n", train_data)
 print("validation_data:\n", validation_data)
 print("test_data:\n", test_data)
 
-train_data.to_csv("/valohai/outputs/train.csv")
-validation_data.to_csv("/valohai/outputs/validation_data.csv")
-test_data.to_csv("/valohai/outputs/test_data.csv")
+train_data.to_csv("/valohai/outputs/train.csv", index=False)
+validation_data.to_csv("/valohai/outputs/validation_data.csv", index=False)
+test_data.to_csv("/valohai/outputs/test_data.csv", index=False)
 

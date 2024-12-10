@@ -5,7 +5,27 @@
       - name: input_file
         optional: false
         filename: input_file.csv
+        default: datum://0193b052-21c1-0a19-1d32-d1a9d5acaa0e
     command:
     - pip install -r requirements.txt
     - python preprocess.py
 
+- step:
+    name: train
+    image: python:3.11
+    inputs:
+      - name: train_data
+        optional: false
+        filename: train_data.csv
+        default: datum://0193b052-21c1-0a19-1d32-d1a9d5acaa0e
+      - name: validation_data
+        optional: false
+        filename: validation_data.csv
+        default: datum://0193b05d-6cf2-e38a-d4f1-4754b9f151a8
+      - name: preprocessor
+        optional: false
+        filename: preprocessor.joblib
+        default: datum://0193b05d-6d9e-6b9d-5fba-e45857076b3c
+    command:
+    - pip install -r requirements.txt
+    - python train.py
