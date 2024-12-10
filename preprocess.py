@@ -43,7 +43,7 @@ cat_pipeline = ColumnTransformer(
 input_file = valohai.inputs("input_file").path()
 
 df_model_data = pd.read_csv(input_file)
-df_model_data = df_model_data.drop(features_to_remove, axis=1)
+df_model_data = df_model_data.drop(features_to_remove, axis=1, errors='ignore')
 
 encoder = cat_pipeline.fit(df_model_data)
 joblib.dump(encoder, "/valohai/outputs/categorical_encoder.joblib")
@@ -58,7 +58,7 @@ print("train_data:\n", train_data)
 print("validation_data:\n", validation_data)
 print("test_data:\n", test_data)
 
-train_data.to_csv("/valohai/outputs/train.csv", index=False)
+train_data.to_csv("/valohai/outputs/train_data.csv", index=False)
 validation_data.to_csv("/valohai/outputs/validation_data.csv", index=False)
 test_data.to_csv("/valohai/outputs/test_data.csv", index=False)
 

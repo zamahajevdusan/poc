@@ -29,3 +29,20 @@
     command:
     - pip install -r requirements.txt
     - python train.py
+
+- pipeline:
+    name: training-pipeline
+    nodes:
+      - name: preprocess
+        type: execution
+        step: preprocess
+      - name: train
+        type: execution
+        step: train
+      # - name: evaluate
+      #   type: execution
+      #   step: evaluate
+    edges:
+      - [preprocess.output.train_data.csv, train.input.train_data]
+      - [preprocess.output.validation_data.csv, train.input.validation_data]
+      - [preprocess.output.categorical_encoder.joblib, train.input.preprocessor]
