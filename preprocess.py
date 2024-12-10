@@ -3,7 +3,7 @@ import numpy as np # type: ignore
 import pandas as pd # type: ignore
 from sklearn.compose import ColumnTransformer # type: ignore
 from sklearn.preprocessing import OrdinalEncoder # type: ignore
-import valohai
+import valohai # type ignore
 
 
 features_to_remove = [
@@ -43,6 +43,7 @@ cat_pipeline = ColumnTransformer(
 input_file = valohai.inputs("input_file").path()
 
 df_model_data = pd.read_csv(input_file)
+df_model_data = df_model_data.drop(features_to_remove, axis=1)
 
 encoder = cat_pipeline.fit(df_model_data)
 joblib.dump(encoder, "/valohai/outputs/categorical_encoder.joblib")
