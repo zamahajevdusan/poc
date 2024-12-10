@@ -47,9 +47,9 @@ preprocessor = joblib.load(
     valohai.inputs("preprocessor").path()
 )
 
-preprocessor = joblib.load(
-    "categorical_encoder.joblib"
-)
+# preprocessor = joblib.load(
+#     "categorical_encoder.joblib"
+# )
 
 pipeline = Pipeline(
     steps=[("preprocessor", preprocessor), ("model", model)]
