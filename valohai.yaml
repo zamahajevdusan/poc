@@ -1,0 +1,11 @@
+- step:
+    name: preprocess
+    image: python:3.11
+    inputs:
+      - name: input_file
+        optional: false
+        filename: input_file.csv
+    command:
+    - pip install -r requirements.txt
+    - python preprocess.py
+

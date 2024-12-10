@@ -1,0 +1,10 @@
+cloudpickle==2.2.1
+numpy==1.26.3
+packaging==23.2
+pandas==2.1.4
+psutil==5.9.8
+pyyaml==6.0.1
+scikit-learn==1.5.1
+scipy==1.11.4
+xgboost==2.1.1
+valohai==0.0.1
