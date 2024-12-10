@@ -78,5 +78,5 @@ pipeline.fit(
     train_df, y_train, model__eval_set=[(validation_df, y_validation)]
 )
 
-joblib.dump(pipeline, "/valohai/outputs/pipeline.joblib")
+xgb.save(pipeline, "/valohai/outputs/pipeline.xgb")
 
