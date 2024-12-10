@@ -41,6 +41,8 @@ training_parameters = {
     "early_stopping_rounds": 10,  # the model trains until it stops improving.
     "verbosity": 1,  # verbosity of printing messages
 }
+
+
 model = xgb.XGBRegressor(**training_parameters)
 
 preprocessor = joblib.load(

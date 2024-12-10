@@ -17,15 +17,15 @@
       - name: train_data
         optional: false
         filename: train_data.csv
-        default: datum://0193b052-21c1-0a19-1d32-d1a9d5acaa0e
+        default: datum://0193b07d-d40e-7ef8-2ebf-5729b4f275cf
       - name: validation_data
         optional: false
         filename: validation_data.csv
-        default: datum://0193b05d-6cf2-e38a-d4f1-4754b9f151a8
+        default: datum://0193b07d-d3c1-f60f-9d09-ed627f5f872e
       - name: preprocessor
         optional: false
         filename: preprocessor.joblib
-        default: datum://0193b05d-6d9e-6b9d-5fba-e45857076b3c
+        default: datum://0193b07d-d48e-55d4-ab9f-12668190e631
     command:
     - pip install -r requirements.txt
     - python train.py

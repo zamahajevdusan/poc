@@ -1,5 +1,7 @@
 import pandas as pd
-import mlflow
+import joblib
+import xdg
+import valohai
 
 target = "actual_shipping_days"
 categorical_features_names = [
@@ -13,25 +15,12 @@ categorical_features_names = [
 ]
 
 
-def run(test_data, tracking_server_arn, experiment_name, run_id, training_run_id):
+test_df = pd.read_csv(valohai.inputs("test_data").path())
+model = joblib.load(valohai.inputs("model").path())
 
-    mlflow.set_tracking_uri(tracking_server_arn)
-    mlflow.set_experiment(experiment_name)
+print("test_df.shape:", test_df.shape)
+print("test_df.columns:", test_df.columns)
 
-    with mlflow.start_run(run_id=run_id):
-        with mlflow.start_run(run_name="ModelEvaluation", nested=True):
-            test_df = pd.read_csv(test_data)
 
-            print("test_df.shape:", test_df.shape)
-            print("test_df.columns:", test_df.columns)
 
-            ml_pipeline = mlflow.pyfunc.load_model(f"runs:/{training_run_id}/model")
 
-            results = mlflow.evaluate(
-                model=ml_pipeline,
-                data=test_df,
-                targets=target,
-                model_type="regressor",
-                evaluators=["default"],
-            )
-            return {"mean_squared_error": results.metrics["mean_squared_error"]}
